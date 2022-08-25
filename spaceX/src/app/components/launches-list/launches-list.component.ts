@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LaunchesService } from 'src/app/services/launches.service';
@@ -10,10 +11,14 @@ import { LaunchesService } from 'src/app/services/launches.service';
 })
 export class LaunchesListComponent implements OnInit {
   $launches!: Observable<any>;
+  form: any = "11:20";
 
-  constructor(private launchesService: LaunchesService, private router: Router) { }
+  constructor(private fb: FormBuilder, private launchesService: LaunchesService, private router: Router) { }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      'time': new FormControl()
+    })
     this.$launches = this.launchesService.getLaunches();
   }
 
@@ -21,4 +26,17 @@ export class LaunchesListComponent implements OnInit {
     this.router.navigate(['launche', id])
   }
 
+  mask = (rawValue: any) => {
+    let secondParam = /\d/;
+    if (rawValue && (rawValue[0] == '0' || rawValue[0] == '1')) {
+      secondParam = /[0-9]/;
+    } else if (rawValue && rawValue[0] == '2') {
+      secondParam = /[0-3]/;
+    }
+    return [/[0-2]/, secondParam, ':', /[0-5]/, /[0-9]/];
+  }
+
+  print() {
+    console.log(this.form.value)
+  }
 }

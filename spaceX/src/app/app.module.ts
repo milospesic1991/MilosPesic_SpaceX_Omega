@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { LaunchesListComponent } from './components/launches-list/launches-list.component';
 import { LauncheDetailsComponent } from './components/launche-details/launche-details.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,10 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TextMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
