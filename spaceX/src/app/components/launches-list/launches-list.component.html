@@ -1,0 +1,7 @@
+<div *ngIf="$launches | async as launches">
+    <div *ngFor="let launche of launches" (click)="routeToDetails(launche.flight_number)">
+        <img src="{{launche.links.mission_patch_small}}" alt="">
+    </div>
+    <!-- <pre>{{ launches[0].links | json }}</pre> -->
+    <!-- <img src="{{launches[0].links.mission_patch_small}}" alt=""> -->
+</div>
